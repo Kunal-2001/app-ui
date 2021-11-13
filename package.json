@@ -1,0 +1,22 @@
+{
+  "name": "app-ui",
+  "version": "1.0.0",
+  "description": "Mock Server",
+  "main": "index.js",
+  "scripts": {
+    "server": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kunal-2001/app-ui.git"
+  },
+  "author": "Kunal-2001",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Kunal-2001/app-ui/issues"
+  },
+  "homepage": "https://github.com/Kunal-2001/app-ui#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}

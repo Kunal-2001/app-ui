@@ -36,7 +36,7 @@ export class CustomLinkSegment extends React.Component<{
       this.circle.setAttribute("cy", "" + point.y);
 
       if (this.percent >= 90) {
-        return;
+        this.percent = 0;
       }
 
       if (this.mounted) {
@@ -55,25 +55,6 @@ export class CustomLinkSegment extends React.Component<{
     return (
       <>
         <svg width="100cm" height="100cm" xmlns="http://www.w3.org/2000/svg">
-          {/* <defs>
-            <marker
-              id="arrow"
-              viewBox="0 0 10 10"
-              refX="5"
-              refY="5"
-              markerWidth="1"
-              markerHeight="1"
-              orient="auto-start-reverse"
-            >
-              <path
-                ref={(ref) => {
-                  this.circle = ref;
-                }}
-                d="M 0 0 L 10 5 L 0 10 z"
-              />
-            </marker>
-          </defs> */}
-
           <path
             ref={(ref) => {
               this.path = ref;

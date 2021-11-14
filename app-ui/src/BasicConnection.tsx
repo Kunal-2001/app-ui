@@ -1,5 +1,4 @@
 import createEngine, {
-  DefaultLinkModel,
   DefaultNodeModel,
   DiagramModel,
 } from "@projectstorm/react-diagrams";
@@ -7,7 +6,7 @@ import { BodyWidget } from "./BodyWidget";
 import { CustomLinkModel } from "./Custom-Components/CustomLinkModel";
 import { CustomLinkFactory } from "./Custom-Components/CustomLinkFactory";
 import "./BasicConnection.css";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import axios from "axios";
 
 export default function BasicConnection() {

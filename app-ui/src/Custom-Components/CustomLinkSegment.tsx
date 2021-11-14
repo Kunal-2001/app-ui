@@ -24,9 +24,8 @@ export class CustomLinkSegment extends React.Component<{
         return;
       }
 
-      this.percent += 2;
-      if (this.percent === 90) {
-        return;
+      if (this.percent < 90) {
+        this.percent += 2;
       }
 
       let point = this.path.getPointAtLength(
@@ -35,6 +34,10 @@ export class CustomLinkSegment extends React.Component<{
 
       this.circle.setAttribute("cx", "" + point.x);
       this.circle.setAttribute("cy", "" + point.y);
+
+      if (this.percent >= 90) {
+        return;
+      }
 
       if (this.mounted) {
         requestAnimationFrame(this.callback);

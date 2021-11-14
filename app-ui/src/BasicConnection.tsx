@@ -7,9 +7,41 @@ import { BodyWidget } from "./BodyWidget";
 import { CustomLinkModel } from "./Custom-Components/CustomLinkModel";
 import { CustomLinkFactory } from "./Custom-Components/CustomLinkFactory";
 import "./BasicConnection.css";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 export default function BasicConnection() {
   const engine = createEngine();
+
+  const fillComponents = async (models) => {
+    let nodesData = [];
+    let linksData = [];
+
+    models.forEach((item) => {
+      if (item["position"] !== undefined) {
+        nodesData.push({ id: item.options.id, name: item.options.name });
+      } else {
+        linksData.push({
+          src: item.sourcePort.parent.options.id,
+          dest: item.targetPort.parent.options.id,
+        });
+      }
+    });
+    await axios({
+      method: "POST",
+      data: {
+        components: nodesData,
+        links: linksData,
+      },
+      url: "http://localhost:5000/api/state/cache",
+    }).then((response) => {
+      console.log(response);
+    });
+  };
+
+  useEffect(() => {
+    fillComponents(models);
+  }, []);
 
   engine.getLinkFactories().registerFactory(new CustomLinkFactory());
 
@@ -34,7 +66,7 @@ export default function BasicConnection() {
 
   let model = new DiagramModel();
 
-  let models = model.addAll(node1, node2, link);
+  let models = model.addAll(link, node1, node2);
 
   models.forEach((item) => {
     item.registerListener({
